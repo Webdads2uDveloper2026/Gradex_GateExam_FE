@@ -1,0 +1,58 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { verifyOTP } from '../api';
+
+const OTPVerify = ({ phone, onVerified }) => {
+  const [otp, setOtp] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleVerify = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await verifyOTP(phone, otp);
+      onVerified();
+      navigate('/assessment');
+    } catch (err) {
+      alert(err.response?.data?.detail || 'Invalid OTP');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center p-6">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="glass-card p-12 max-w-md w-full"
+      >
+        <h2 className="md:text-3xl text-[36px] font-bold text-center mb-8">Verify Account</h2>
+        <p className="text-center text-[18px] text-gray-400 mb-8">Please enter the 6-digit code sent to your phone</p>
+        <form onSubmit={handleVerify} className="space-y-6">
+          <div className="flex flex-col">
+            <label className="text-[16px] mb-4 font-medium mb-2 text-gray-400">One-Time Password (OTP)</label>
+            <input 
+              required
+              className="input-field text-center text-2xl tracking-widest font-bold h-16" 
+              placeholder="000000"
+              maxLength={6}
+              onChange={(e) => setOtp(e.target.value)}
+            />
+          </div>
+          <button 
+            type="submit" 
+            className="btn-primary w-full py-4 text-lg mt-8 shimmer"
+            disabled={loading}
+          >
+            {loading ? 'Verifying...' : 'Continue to Assessment'}
+          </button>
+        </form>
+      </motion.div>
+    </div>
+  );
+};
+
+export default OTPVerify;
