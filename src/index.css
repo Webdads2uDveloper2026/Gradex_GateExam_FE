@@ -29,14 +29,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* .glass-card {
-  background: var(--bg-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  border-radius: 24px;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-} */
+
 
 .btn-primary {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
@@ -363,3 +356,4 @@ body {
   scrollbar-width: thin;
   scrollbar-color: rgba(99, 102, 241, 0.3) rgba(15, 23, 42, 0.5);
 }
+
