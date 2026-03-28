@@ -42,6 +42,7 @@ const Assessment = ({ phone, language }) => {
   };
 
   const handleSubmit = async () => {
+    if (submitting) return;
     setSubmitting(true);
     const submissionData = Object.keys(answers).map((qid) => ({
       question_id: qid,
@@ -50,6 +51,8 @@ const Assessment = ({ phone, language }) => {
 
     try {
       const res = await submitAssessment(phone, submissionData);
+      localStorage.removeItem("time_left");
+      localStorage.removeItem("exam_time");
       navigate("/results", { state: { result: res.data } });
     } catch (err) {
       alert("Failed to submit assessment.");
@@ -57,6 +60,21 @@ const Assessment = ({ phone, language }) => {
       setSubmitting(false);
     }
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const timeLeft = Number(localStorage.getItem("time_left"));
+      if (timeLeft <= 0) {
+        clearInterval(interval);
+
+        if (!submitting) {
+          handleSubmit();
+        }
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [submitting]);
 
   if (loading)
     return (

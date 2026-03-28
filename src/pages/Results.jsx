@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useLocation, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Award, Trophy, ArrowLeft } from "lucide-react";
+import Gradex from "../assets/Gate-x-Logo.svg";
 
 const Results = () => {
   const location = useLocation();
   const result = location.state?.result;
+  console.log(result);
 
   const [score, setScore] = useState(0);
   const [scholarship, setScholarship] = useState(0);
@@ -54,15 +56,15 @@ const Results = () => {
       <motion.div
         initial={{ opacity: 0, scale: 0.9, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        className="glass-card md:p-12 sm:p-20 max-w-2xl w-full flex flex-col items-center relative overflow-hidden"
+        className="glass-card md:p-12 sm:p-15 max-w-2xl w-full flex flex-col items-center relative overflow-hidden"
       >
-        <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-blue-500 via-purple-500 to-pink-500" />
-
-        <div className="flex  flex-col items-center gap-10 mt-20 md:mt-0 md:block">
-          <div className="md:w-24 md:h-24 w-12 md:bg-green-500/10 rounded-full flex items-center justify-center mb-1 md:border md:border-green-500/20">
-            <Trophy size={48} className="text-green-500" />
-          </div>
-
+        <div className="flex  flex-col items-center gap-3  ">
+          <motion.img
+            src={Gradex}
+            alt="GATE-X Logo"
+            className="w-48 md:w-60 object-contain opacity-90 "
+          />
+          <div className="text-white mb-4 md:mb-12 text-[20px] font-semibold">{result.name}</div>
           <h2 className="text-4xl font-extrabold mb-4 bg-clip-text text-transparent bg-linear-to-r from-teal-400 to-blue-500">
             Assessment Completed!
           </h2>

@@ -1,10 +1,17 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
+import Timer from "./Timer";
 
 const Header = () => {
+  const location = useLocation();
+
+  if (location.pathname === "/results") {
+    return null;
+  }
+
   return (
-    <motion.div className="flex justify-start p-2">
+    <motion.div className="flex justify-between items-center p-2">
       <Link to="/">
         <motion.img
           src={logo}
@@ -15,6 +22,7 @@ const Header = () => {
           transition={{ duration: 0.6 }}
         />
       </Link>
+      {location.pathname === "/assessment" && <Timer />}
     </motion.div>
   );
 };

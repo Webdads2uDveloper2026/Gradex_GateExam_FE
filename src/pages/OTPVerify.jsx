@@ -12,8 +12,10 @@ const OTPVerify = ({ phone, onVerified }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await verifyOTP(phone, otp);
-      onVerified();
+      const res = await verifyOTP(phone, otp);
+      const examTime = res.data.exam_time;
+      localStorage.setItem("exam_time", examTime);
+      onVerified(examTime);
       navigate("/assessment");
     } catch (err) {
       alert(err.response?.data?.detail || "Invalid OTP");
@@ -23,7 +25,7 @@ const OTPVerify = ({ phone, onVerified }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6">
+    <div className=" flex items-center justify-center p-6">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
