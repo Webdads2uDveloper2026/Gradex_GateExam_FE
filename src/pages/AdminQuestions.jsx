@@ -24,7 +24,6 @@ import {
 import * as XLSX from "xlsx";
 
 const AdminQuestions = ({ onLogout }) => {
-  const popupTimer = useRef(null);
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deleteConfirm, setDeleteConfirm] = useState({
@@ -279,7 +278,7 @@ const AdminQuestions = ({ onLogout }) => {
       <AnimatePresence>
         {popup.show && (
           <motion.div
-            className="fixed inset-0 z-[200] flex items-center justify-center bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-[200px] flex items-center justify-center bg-black/40 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -487,16 +486,6 @@ const AdminQuestions = ({ onLogout }) => {
                     </button>
                   </div>
                 </div>
-
-                {/* Sticky Footer */}
-                {/* <div className="py-6 border-t border-white/5 bg-slate-900/80 backdrop-blur-md flex space-x-6">
-                  <button type="submit" className="btn-primary flex-1 py-5 text-xl font-black shadow-2xl">
-                    {editingId ? 'Update Question' : 'Publish Question'}
-                  </button>
-                  <button type="button" onClick={() => setIsModalOpen(false)} className="px-10 py-5 bg-slate-800 rounded-2xl font-black text-white hover:bg-slate-700 transition border border-glass-border">
-                    Cancel
-                  </button>
-                </div> */}
               </form>
             </motion.div>
           </div>
@@ -513,7 +502,7 @@ const AdminQuestions = ({ onLogout }) => {
               className="glass-card max-w-4xl w-full max-h-[90vh] flex flex-col rounded-xl border-purple-500/30 border border-glass-border overflow-hidden"
             >
               <div className="py-4 px-4 flex justify-between items-center border border-bottom--purple-500/30 bg-slate-900/40 backdrop-blur-md">
-                <h2 className="md:text-3xl font-medium font-black text-white">
+                <h2 className="md:text-3xl font-medium  text-white text-center">
                   Bulk Question Import
                 </h2>
                 <button
@@ -528,7 +517,7 @@ const AdminQuestions = ({ onLogout }) => {
                 <div className="w-20 cursor-pointer h-20 bg-indigo-500/10 rounded-full flex items-center justify-center mb-8 text-indigo-400 border border-indigo-500/20">
                   <Upload size={30} />
                 </div>
-                <h3 className="md:text-28px font-medium font-black mb-4">
+                <h3 className="md:text-28px font-medium  mb-4">
                   Excel/CSV Bulk Upload
                 </h3>
                 <p className="text-gray-400 mb-10 leading-relaxed md:text-[16px] font-medium">

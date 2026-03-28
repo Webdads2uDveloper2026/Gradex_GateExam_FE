@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { getQuestions, submitAssessment } from "../api";
-import logo from "../assets/logo.png";
 
 const Assessment = ({ phone, language }) => {
   const [questions, setQuestions] = useState([]);
@@ -94,9 +93,6 @@ const Assessment = ({ phone, language }) => {
 
   return (
     <div>
-      <div className="flex justify-center mt-10 ">
-        <img src={logo} alt="Gradex Logo" className="w-35  object-contain" />
-      </div>{" "}
       <div className="min-h-screen flex  flex-col items-center justify-center p-4 sm:p-12 relative overflow-hidden">
         <div className="absolute top-12 md:top-5 left-4 md:left-10 right-10 h-2 bg-gray-800 rounded-full overflow-hidden">
           <motion.div
@@ -170,7 +166,9 @@ const Assessment = ({ phone, language }) => {
               <button
                 onClick={nextQuestion}
                 disabled={answers[currentQ._id] === undefined}
-                className="btn-primary md:py-4 md:px-12 font-bold"
+                className=" inline-block text-center md:py-4 md:px-20 w-40 font-bold  text-md text-white  rounded-xl cursor-pointer
+                       bg-linear-to-r from-[#1e2a5a] via-[#2f4fa2] to-[#5fa8ff]
+                        hover:shadow-xl transition-all duration-300"
               >
                 <span className="hidden md:block">Next Question</span>
                 <span className="md:hidden">Next</span>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { verifyOTP } from "../api";
@@ -43,14 +43,16 @@ const OTPVerify = ({ phone, onVerified }) => {
             <input
               required
               className="input-field text-center text-2xl tracking-widest font-bold h-16"
-              placeholder="000000"
+              placeholder="0000"
               maxLength={6}
               onChange={(e) => setOtp(e.target.value)}
             />
           </div>
           <button
             type="submit"
-            className="btn-primary w-full py-4 text-lg mt-8 shimmer"
+            className="w-full inline-block text-center py-2  text-md text-white font-medium rounded-xl cursor-pointer
+                       bg-linear-to-r from-[#1e2a5a] via-[#2f4fa2] to-[#5fa8ff]
+                        hover:shadow-xl transition-all duration-300"
             disabled={loading}
           >
             {loading ? "Verifying..." : "Continue to Assessment"}

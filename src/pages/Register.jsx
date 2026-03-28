@@ -39,9 +39,6 @@ const Register = ({ onNext }) => {
         animate={{ opacity: 1, scale: 1 }}
         className="glass-card p-8 sm:p-10 max-w-lg w-full border rounded-t-xl border-indigo-500/30"
       >
-        <div className="flex justify-center">
-          <img src={logo} alt="Gradex Logo" className="w-20  object-contain" />
-        </div>
         <h2 className="md:text-3xl  text-center font-medium text-[20px] mb-8">
           Registration
         </h2>
@@ -110,7 +107,7 @@ const Register = ({ onNext }) => {
               required
               name="phone"
               className="input-field"
-              placeholder="+919000000000"
+              placeholder="+91 9000000000"
               onChange={(e) =>
                 setFormData({ ...formData, phone: e.target.value })
               }
@@ -138,11 +135,11 @@ const Register = ({ onNext }) => {
               </label>
             </div>
           </div>
-
           <button
             type="submit"
-            className="btn-primary w-full md:py-4 md:text-lg text-sm mt-8"
-            disabled={loading}
+            className="w-full inline-block text-center py-2  text-md text-white font-medium rounded-xl cursor-pointer
+                       bg-linear-to-r from-[#1e2a5a] via-[#2f4fa2] to-[#5fa8ff]
+                        hover:shadow-xl transition-all duration-300"
           >
             {loading ? "Processing..." : "Verify Phone Number"}
           </button>

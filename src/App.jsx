@@ -14,8 +14,10 @@ import Landing from "./pages/Landing";
 import AdminQuestions from "./pages/AdminQuestions";
 import AdminLogin from "./pages/AdminLogin";
 import NotFound from "./pages/NotFound";
+import Header from "./components/Header";
 
 function App() {
+
   const [studentPhone, setStudentPhone] = useState(
     localStorage.getItem("studentPhone") || "",
   );
@@ -29,7 +31,6 @@ function App() {
   const [adminToken, setAdminToken] = useState(
     localStorage.getItem("adminToken"),
   );
-  console.log(adminToken);
 
   const completeLogin = (phone, lang) => {
     localStorage.setItem("studentPhone", phone);
@@ -53,9 +54,12 @@ function App() {
     setAdminToken(null);
   };
 
+  const isAdminRoute = window.location.pathname.startsWith("/admin");
+
   return (
     <Router>
       <div className="app-container min-h-screen">
+        {!isAdminRoute && <Header />}
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route
