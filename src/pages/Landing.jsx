@@ -13,6 +13,7 @@ import {
   FaPalette,
   FaBullhorn,
 } from "react-icons/fa";
+import CourseLoop from "../components/CourseLoop";
 
 const courses = [
   { icon: <FaPython />, title: "Advanced Python" },
@@ -57,20 +58,28 @@ const Landing = () => {
           variants={container}
           initial="hidden"
           animate="show"
-          className="glass-card p-12 max-w-5xl w-full flex flex-col items-center"
+          className="glass-card p-12 max-w-7xl w-full flex flex-col items-center"
         >
           <motion.img
             src={Gradex}
             alt="GATE-X Logo"
+            className="w-48 md:w-100 object-contain opacity-90 mb-6"
             variants={fadeUp}
-            className="w-48 md:w-60 object-contain opacity-90 mb-6"
+            animate={{
+              scale: [1, 1.06, 1],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
           />
-          <motion.div variants={fadeUp} className="mb-6">
+          <motion.div variants={fadeUp} className="mb-4">
             <TextCycle texts={texts} />
           </motion.div>
           <motion.h2
             variants={fadeUp}
-            className="text-lg md:text-xl font-semibold mb-2"
+            className="text-lg md:text-xl font-semibold mb-1"
           >
             GATE-X Scholarship Exam at Gradex | Up to 80% Discount on Tech
             Courses
@@ -80,39 +89,14 @@ const Landing = () => {
             scholarship on courses like Python, Data Analytics, Full-Stack,
             UI/UX, Graphic Design & Digital Marketing.
           </motion.p>
-
           <motion.div
             variants={fadeUp}
             className="w-full my-10 overflow-hidden"
           >
             <h3 className="text-lg font-semibold mb-4">Courses Covered</h3>
 
-            <motion.div
-              className="flex gap-12 items-center"
-              animate={{ x: ["0%", "-50%"] }}
-              transition={{
-                repeat: Infinity,
-                duration: 10,
-                ease: "linear",
-              }}
-            >
-              {[...courses, ...courses].map((course, index) => (
-                <motion.div
-                  key={index}
-                  className="flex flex-col items-center justify-center min-w-121px"
-                  whileHover={{ scale: 1.2 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <span className="text-6xl text-white mb-2">
-                    {course.icon}
-                  </span>
-                  <span className="text-xs md:text-sm text-white/80 text-center">
-                    {course.title}
-                  </span>
-                </motion.div>
-              ))}
-            </motion.div>
-            <motion.div variants={fadeUp} className="w-full mt-10">
+            <CourseLoop courses={courses} />
+            <motion.div variants={fadeUp} className="w-full mt-6">
               <Link
                 to="/register"
                 className="w-100 inline-block text-center py-3 text-white font-semibold rounded

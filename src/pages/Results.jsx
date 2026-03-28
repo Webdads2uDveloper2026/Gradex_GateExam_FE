@@ -7,21 +7,17 @@ import Gradex from "../assets/Gate-x-Logo.svg";
 const Results = () => {
   const location = useLocation();
   const result = location.state?.result;
-  console.log(result);
-
   const [score, setScore] = useState(0);
   const [scholarship, setScholarship] = useState(0);
 
   if (!result) return <Navigate to="/" />;
-
   const isEligible = result.scholarship > 0;
 
-  // 🔥 Counter Animation
   useEffect(() => {
     let scoreStart = 0;
     let scholarshipStart = 0;
 
-    const duration = 1000; // animation time
+    const duration = 1000;
     const incrementTime = 20;
 
     const scoreStep = Math.ceil(result.score / (duration / incrementTime));
@@ -52,24 +48,26 @@ const Results = () => {
   }, [result]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center mt-8 md:mt-10 p-6 text-center">
+    <div className="min-h-screen flex flex-col items-center justify-center  p-4 text-center">
       <motion.div
         initial={{ opacity: 0, scale: 0.9, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        className="glass-card md:p-12 sm:p-15 max-w-2xl w-full flex flex-col items-center relative overflow-hidden"
+        className="glass-card  max-w-2xl w-full flex flex-col items-center relative overflow-hidden"
       >
         <div className="flex  flex-col items-center gap-3  ">
           <motion.img
             src={Gradex}
             alt="GATE-X Logo"
-            className="w-48 md:w-60 object-contain opacity-90 "
+            className="w-48 md:w-90 object-contain opacity-90 "
           />
-          <div className="text-white mb-4 md:mb-12 text-[20px] font-semibold">{result.name}</div>
-          <h2 className="text-4xl font-extrabold mb-4 bg-clip-text text-transparent bg-linear-to-r from-teal-400 to-blue-500">
+          <div className="text-white  text-[30px] font-semibold">
+            {result.name}
+          </div>
+          <h2 className="text-4xl font-extrabold mb-2 bg-clip-text text-transparent bg-linear-to-r from-teal-400 to-blue-500">
             Assessment Completed!
           </h2>
         </div>
-        <p className="text-gray-400 mb-4 md:mb-12 text-[18px]">
+        <p className="text-gray-400 mb-4 md:mb-10 text-[18px]">
           Thank you for participating in the Gradex Skill Assessment.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full md:mb-12 mb-8">
@@ -109,7 +107,7 @@ const Results = () => {
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
-            className="bg-green-500/20 text-green-400 p-6 rounded-2xl w-full mb-12 border border-green-500/30 font-medium"
+            className="bg-green-500/20 text-green-400 p-4 rounded-2xl w-full mb-6 border border-green-500/30 font-medium"
           >
             Congratulations! You are eligible for a scholarship based on your
             performance.
@@ -122,7 +120,7 @@ const Results = () => {
         <div className="w-full">
           <Link
             to="/"
-            className="w-full  inline-block text-center py-5 no-underline text-white font-semibold rounded
+            className="w-full  inline-block text-center py-3 no-underline text-white font-semibold rounded
                        bg-linear-to-r from-[#1e2a5a] via-[#2f4fa2] to-[#5fa8ff]
                        hover:scale-105 hover:shadow-xl transition-all duration-300"
           >

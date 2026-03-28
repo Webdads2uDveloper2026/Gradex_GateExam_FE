@@ -6,9 +6,7 @@ import Timer from "./Timer";
 const Header = () => {
   const location = useLocation();
 
-  if (location.pathname === "/results") {
-    return null;
-  }
+
 
   return (
     <motion.div className="flex justify-between items-center p-2">

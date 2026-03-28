@@ -4,14 +4,12 @@ const Timer = ({ onTimeUp }) => {
   const [timeLeft, setTimeLeft] = useState(() => {
     const saved = localStorage.getItem("time_left");
     const exam = localStorage.getItem("exam_time");
-
     if (saved) return Number(saved);
     return exam ? Number(exam) * 60 : 0;
   });
 
   useEffect(() => {
     if (timeLeft <= 0) return;
-
     const timer = setInterval(() => {
       setTimeLeft((prev) => prev - 1);
     }, 1000);
